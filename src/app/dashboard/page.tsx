@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
-import { useState } from "react";
+import { useId, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
     Home, User, Trophy, Swords, BarChart3, Wallet, Bell, HelpCircle, Settings,
@@ -29,11 +29,8 @@ interface MenuCategory {
 export default function DashboardHome() {
     const { theme } = useTheme();
     const isMiles = theme === "miles";
-    const [expandedId, setExpandedId] = useState<string | null>(() => {
-        if (typeof window === "undefined") return "dashboard";
-        return new URLSearchParams(window.location.search).get('cat') ?? "dashboard";
-    });
-    const [instanceId] = useState(() => Math.random().toString(16).slice(2, 10).toUpperCase());
+    const [expandedId, setExpandedId] = useState<string | null>("dashboard");
+    const instanceId = useId().replace(/:/g, "").toUpperCase();
     const { push } = useRouter();
 
     const handleLogout = () => {
@@ -213,7 +210,7 @@ export default function DashboardHome() {
                             </div>
 
                             {/* Expanded Content */}
-                            <div className={`relative z-10 transition-all duration-700 ${isExpanded ? 'mt-10 opacity-100 max-h-[1000px]' : 'mt-0 opacity-0 max-h-0 pointer-events-none'
+                            <div className={`relative z-10 transition-all duration-700 ${isExpanded ? 'mt-10 opacity-100 max-h-250' : 'mt-0 opacity-0 max-h-0 pointer-events-none'
                                 }`}>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {cat.subItems.map((sub) => {
@@ -245,7 +242,7 @@ export default function DashboardHome() {
                                 </div>
 
                                 {/* Bottom Action Line */}
-                                <div className={`mt-8 h-[1px] w-full opacity-10 ${isMiles ? 'bg-white' : 'bg-black'}`} />
+                                <div className={`mt-8 h-px w-full opacity-10 ${isMiles ? 'bg-white' : 'bg-black'}`} />
                                 <div className={`mt-4 text-[10px] font-black uppercase tracking-[0.2em] opacity-40 ${isMiles ? "text-white" : "text-slate-900"}`}>
                                     Terminal Instance ID: {instanceId}
                                 </div>

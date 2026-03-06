@@ -44,80 +44,81 @@ export function AppSidebar({ isMiles, onLogout, role, isOpen, onClose }: AppSide
             {/* Backdrop for mobile */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 z-[65] md:hidden bg-black/60 backdrop-blur-md animate-fade-in"
+                    className="fixed inset-0 z-70 md:hidden bg-black/60 backdrop-blur-md animate-fade-in"
                     onClick={onClose}
                 />
             )}
 
-            {/* Main Sidebar Wrapper */}
-            <div className={`fixed z-[70] flex flex-col items-center transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] 
-                md:hidden
-                max-md:right-6 max-md:top-1/2 max-md:-translate-y-1/2
-                ${isOpen ? 'max-md:translate-x-0 max-md:opacity-100' : 'max-md:translate-x-32 max-md:opacity-0 max-md:pointer-events-none'}
-            `}>
-                <div className={`flex flex-col items-center py-10 gap-6 rounded-full border backdrop-blur-3xl transition-all duration-500 shadow-2xl ${isMiles ? 'bg-black/80 border-white/10 shadow-glow-pink/20' : 'bg-white/90 border-black/5 shadow-xl'
-                    } w-[76px]`}>
-
-                    {/* User Avatar - High intensity glow as per image */}
-                    <div className="relative group cursor-pointer">
-                        <div className={`w-14 h-14 rounded-full p-0.5 border-2 transition-all duration-500 ${isMiles ? 'border-accent-pink shadow-[0_0_20px_rgba(254,1,154,0.8)]' : 'border-accent-red shadow-[0_0_20px_rgba(227,6,19,0.8)]'
-                            }`}>
-                            <div className="w-full h-full rounded-full overflow-hidden bg-slate-900">
-                                <Image
-                                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200"
-                                    alt="Profile"
-                                    width={56}
-                                    height={56}
-                                    unoptimized
-                                    className="w-full h-full object-cover"
-                                />
+            {/* Mobile Compact Capsule Sidebar */}
+            <div className={`fixed z-80 md:hidden right-3 top-1/2 -translate-y-1/2 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-24 opacity-0 pointer-events-none'
+                }`}>
+                <div className={`w-20 h-[88dvh] max-h-screen rounded-full border backdrop-blur-3xl shadow-2xl ${isMiles ? 'bg-black/85 border-white/10 shadow-glow-pink/20' : 'bg-white/95 border-black/10 shadow-xl'
+                    }`}>
+                    <div className="h-full flex flex-col items-center py-5">
+                        {/* Avatar */}
+                        <div className="relative group cursor-pointer shrink-0">
+                            <div className={`w-14 h-14 rounded-full p-0.5 border-2 transition-all duration-500 ${isMiles ? 'border-accent-pink shadow-[0_0_20px_rgba(254,1,154,0.8)]' : 'border-accent-red shadow-[0_0_20px_rgba(227,6,19,0.8)]'
+                                }`}>
+                                <div className="w-full h-full rounded-full overflow-hidden bg-slate-900">
+                                    <Image
+                                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200"
+                                        alt="Profile"
+                                        width={56}
+                                        height={56}
+                                        unoptimized
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Top Separator */}
-                    <div className={`w-6 h-[1px] opacity-10 ${isMiles ? 'bg-white' : 'bg-black'}`} />
+                        <div className={`w-8 h-px mt-4 mb-3 shrink-0 ${isMiles ? 'bg-white/10' : 'bg-black/10'}`} />
 
-                    {/* Nav Links */}
-                    <nav className="flex flex-col gap-6">
-                        {links.map((link) => {
-                            const isActive = pathname === link.href;
-                            const Icon = link.icon;
-                            return (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    title={link.name}
-                                    onClick={() => { if (window.innerWidth < 768) onClose(); }}
-                                    className={`relative w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 group ${isActive
-                                        ? isMiles ? 'bg-white/10 text-accent-pink shadow-glow-pink' : 'bg-black/5 text-accent-red shadow-glow-red'
-                                        : isMiles ? 'text-white/30 hover:text-white' : 'text-slate-400 hover:text-slate-900'
-                                        }`}
-                                >
-                                    <Icon className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
-                                    {link.notify && !isActive && (
-                                        <span className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full bg-red-500 border-2 border-black" />
-                                    )}
-                                </Link>
-                            )
-                        })}
+                        {/* Scrollable icon rail */}
+                        <div className="flex-1 overflow-y-auto custom-scrollbar py-1">
+                            <nav className="flex flex-col items-center gap-4 px-2">
+                                {links.map((link) => {
+                                    const isActive = pathname === link.href;
+                                    const Icon = link.icon;
+                                    return (
+                                        <Link
+                                            key={link.name}
+                                            href={link.href}
+                                            title={link.name}
+                                            onClick={onClose}
+                                            className={`relative w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 group ${isActive
+                                                ? isMiles ? 'bg-white/10 text-accent-pink shadow-glow-pink' : 'bg-black/5 text-accent-red shadow-glow-red'
+                                                : isMiles ? 'text-white/35 hover:text-white hover:bg-white/5' : 'text-slate-500 hover:text-slate-900 hover:bg-black/5'
+                                                }`}
+                                        >
+                                            <Icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
+                                            <span className="sr-only">{link.name}</span>
+                                            {link.notify && !isActive && (
+                                                <span className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full bg-red-500 border border-black/80" />
+                                            )}
+                                        </Link>
+                                    );
+                                })}
+                            </nav>
+                        </div>
 
-                        {/* Logout Icon - As per image */}
-                        <button
-                            onClick={onLogout}
-                            className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 ${isMiles ? 'text-white/30 hover:text-red-400' : 'text-slate-400 hover:text-red-600'
-                                }`}
-                        >
-                            <LogOut className="w-6 h-6" />
-                        </button>
-                    </nav>
+                        <div className={`w-8 h-px mt-3 mb-2 shrink-0 ${isMiles ? 'bg-white/10' : 'bg-black/10'}`} />
 
-                    {/* Bottom Separator */}
-                    <div className={`w-6 h-[1px] opacity-10 ${isMiles ? 'bg-white' : 'bg-black'}`} />
+                        {/* Bottom icons */}
+                        <div className="shrink-0 flex flex-col items-center gap-3 pb-1">
+                            <button
+                                onClick={onLogout}
+                                title="Logout"
+                                className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${isMiles ? 'text-white/35 hover:text-red-400 hover:bg-red-500/10' : 'text-slate-500 hover:text-red-600 hover:bg-red-500/10'
+                                    }`}
+                            >
+                                <LogOut className="w-5 h-5" />
+                            </button>
 
-                    {/* Pulse Icon (Bottom decoration as per Image) */}
-                    <div className={`opacity-30 ${isMiles ? 'text-white' : 'text-slate-900'}`}>
-                        <Activity className="w-6 h-6" />
+                            <div title="Live" className={`w-10 h-10 rounded-full flex items-center justify-center opacity-35 ${isMiles ? 'text-white' : 'text-slate-700'}`}>
+                                <Activity className="w-4 h-4" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

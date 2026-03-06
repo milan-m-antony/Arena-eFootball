@@ -31,7 +31,7 @@ export function DashboardHeader({ isMiles, onMenuClick, role }: DashboardHeaderP
     ];
 
     return (
-        <header className="fixed top-6 left-1/2 -translate-x-1/2 z-[60] w-[calc(100%-3rem)] max-w-7xl">
+        <header className="fixed top-6 left-1/2 -translate-x-1/2 z-60 w-[calc(100%-3rem)] max-w-7xl">
             <nav className={`h-16 md:h-20 px-6 md:px-10 rounded-[2rem] border backdrop-blur-3xl flex items-center justify-between transition-all duration-500 shadow-2xl ${isMiles ? 'bg-black/40 border-white/10 shadow-glow-pink/10' : 'bg-white/60 border-black/5'
                 }`}>
                 {/* Left: Logo */}
