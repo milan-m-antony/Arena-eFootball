@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ARENA UI: Cinematic Tournament Frontend
 
-## Getting Started
+A pure frontend UI showcase built with Next.js App Router and Tailwind CSS.
 
-First, run the development server:
+This project focuses on visual design, motion, and layout systems for a premium tournament experience. It includes themed landing/auth/dashboard/admin screens with no backend dependency.
+
+## Highlights
+
+- Cinematic landing page with animated hero, gallery stack, and section storytelling.
+- Dual visual modes:
+  - `miles`: dark neon mood
+  - `peter`: light high-contrast mood
+- Reusable glassmorphic UI style and glow utilities.
+- Auth, dashboard, and admin pages implemented as UI-only flows.
+- Fully static frontend behavior suitable for portfolio/demo usage.
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Lucide React
+
+## Project Structure
+
+- `src/app` - route pages and layouts
+- `src/components/layout` - navbar, wrappers, dashboard/admin shells, auth form
+- `src/components/ui` - reusable UI primitives
+- `src/context/ThemeContext.tsx` - global theme toggle (`miles` / `peter`)
+- `src/app/globals.css` - design tokens, theme variables, utility styles
+
+## Screenshots
+
+### Landing Page
+
+![Landing Page](./docs/images/landing-page.png)
+
+### Landing Page (Responsive)
+
+![Landing Page Responsive](./docs/images/landin-page-responsive.png)
+
+### Login Page
+
+![Login Page](./docs/images/login.png)
+
+### Dashboard
+
+![Dashboard](./docs/images/dashboard.png)
+
+## Run Locally
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Useful direct routes:
 
-## Learn More
+- `http://localhost:3000/login`
+- `http://localhost:3000/register`
+- `http://localhost:3000/dashboard`
+- `http://localhost:3000/admin`
 
-To learn more about Next.js, take a look at the following resources:
+## Available Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` - start local dev server
+- `npm run build` - production build
+- `npm run start` - run production build
+- `npm run lint` - run ESLint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Notes
 
-## Deploy on Vercel
+- This repository is frontend-only (UI showcase).
+- No database/auth backend is required to run the project.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Status
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- This design system is currently under active development.
+- Some admin dashboard modules are still incomplete and need implementation.
+- Some theme states and UI details are not fully polished yet and may look inconsistent in certain screens.
+
+## Free Use and Editing
+
+- You can use, edit, and customize this project freely for personal or commercial work.
+- You are encouraged to modify pages, components, and theme styles to match your own product needs.
+- Usage is provided under the MIT License (see License section below).
+
+## Fork and Build Your Version
+
+You can fork this repository and continue development on your own version:
+
+1. Click `Fork` on GitHub.
+2. Clone your fork locally.
+3. Run `npm install` and `npm run dev`.
+4. Start improving incomplete modules, especially in admin/dashboard flows.
+5. Refine theme/UI consistency across all pages.
+
+If you improve missing modules or fix theme inconsistencies, feel free to open a pull request.
+
+## License
+
+MIT
+

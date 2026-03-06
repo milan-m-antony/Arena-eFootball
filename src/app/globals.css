@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@plugin "tailwindcss-animate";
 
-@theme inline {
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-primary: var(--primary);
+  --color-accent-red: #E30613;
+  --color-accent-blue: #003791;
+  --color-accent-pink: #FE019A;
+
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  --shadow-glow-red: 0 0 25px 0 rgba(227, 6, 19, 0.4);
+  --shadow-glow-blue: 0 0 25px 0 rgba(0, 55, 145, 0.4);
+  --shadow-glow-pink: 0 0 25px 0 rgba(254, 1, 154, 0.4);
+
+  --radius-xl: 32px;
+  --radius-2xl: 48px;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 240 10% 2%;
+    --foreground: 0 0% 100%;
+    --border: 240 10% 15%;
+    --radius: 24px;
+  }
+
+  /* Miles Morales Theme */
+  .dark-miles {
+    --background: 240 10% 2%;
+    --foreground: 0 0% 100%;
+    --primary: 355 100% 45%;
+    /* Red */
+    --accent: 324 100% 50%;
+    /* Pink Glow */
+    --border: 0 0% 100% / 0.1;
+  }
+
+  /* Peter Parker Theme - TRANSFORMED TO LIGHT MODE */
+  .light-peter {
+    --background: 210 40% 98%;
+    /* Slate-50 like */
+    --foreground: 222 47% 11%;
+    --primary: 217 100% 45%;
+    /* Sharper Blue */
+    --accent: 0 97% 45%;
+    /* Red Glow */
+    --border: 240 10% 12% / 0.1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .glass-panel {
+    @apply backdrop-blur-[12px] bg-white/[0.03] border border-white/10 shadow-glass;
+  }
+
+  .light-peter .glass-panel {
+    @apply bg-black/[0.03] border-black/5;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-[15px] bg-white/[0.03] border border-white/10 rounded-2xl transition-all duration-300;
+  }
+
+  .light-peter .glass-card {
+    @apply bg-black/5 border-black/5;
+  }
+
+  .text-glow-red {
+    text-shadow: 0 0 15px rgba(227, 6, 19, 0.6);
+  }
+
+  .text-glow-blue {
+    text-shadow: 0 0 15px rgba(0, 55, 145, 0.6);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 }
