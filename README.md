@@ -36,10 +36,6 @@ This project focuses on visual design, motion, and layout systems for a premium 
 
 ![Landing Page](./docs/images/landing-page.png)
 
-### Landing Page (Responsive)
-
-![Landing Page Responsive](./docs/images/landin-page-responsive.png)
-
 ### Login Page
 
 ![Login Page](./docs/images/login.png)
